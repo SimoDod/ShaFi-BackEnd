@@ -22,7 +22,7 @@ const Search = ({
   return (
     <div className="join">
       <input
-        className="input input-bordered join-item w-40 focus:border-primary"
+        className="input input-bordered join-item w-50 focus:border-primary"
         onChange={({ target }) => onSearch(target.value)}
         placeholder="Search"
       />

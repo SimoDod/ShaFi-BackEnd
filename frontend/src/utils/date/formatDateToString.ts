@@ -1,7 +1,8 @@
 import { isDate, format, isValid, parseISO } from "date-fns";
 
 export const dateFormats = {
-  default: "dd/MM/yyyy",
+  defaultSlash: "dd/MM/yyyy",
+  defaultLine: "dd-MM-yyyy",
   complete: "yyyy-MM-dd'T'HH:mm:ss.SSSxxx",
   displayComplete: "dd/MM/yyyy - HH:mm:ss",
 };

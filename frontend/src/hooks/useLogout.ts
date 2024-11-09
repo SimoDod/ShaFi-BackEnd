@@ -7,7 +7,7 @@ const useLogout = () => {
 
   const logout = () => {
     clearAuthSession();
-    navigate(routePaths.authentication.path);
+    navigate(routePaths.dashboard.path);
   };
 
   return logout;

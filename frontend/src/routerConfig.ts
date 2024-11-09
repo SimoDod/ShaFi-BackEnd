@@ -11,7 +11,13 @@ export const routePaths = {
     label: "navMenu.dashboard",
     path: "/",
   },
-  reservations: { label: "navMenu.reservations", path: "/reservations" },
+  reservations: {
+    label: "navMenu.reservations",
+    path: "/reservations/",
+    year: "/reservations/:year",
+    yearAndReservationId: "/reservations/:year/:reservationId",
+    create: "/create",
+  },
   notFound: {
     path: "/404",
   },

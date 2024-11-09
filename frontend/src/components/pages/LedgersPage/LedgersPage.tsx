@@ -57,7 +57,7 @@ const LedgersPage = () => {
           <CreateLedgerForm onSubmit={handleCreateLedgerSubmit} />
         </Modal>
       )}
-      <div className="2xl:pr-52 2xl:pl-52">
+      <div className="2xl:pr-40 2xl:pl-40">
         <WindowCard
           contentClass="flex flex-wrap justify-evenly"
           isLoading={false}

@@ -56,6 +56,14 @@ const router = createBrowserRouter(
           path={routePaths.reservations.path}
           element={<ReservationsPage />}
         />
+        <Route
+          path={routePaths.reservations.year}
+          element={<ReservationsPage />}
+        />
+        <Route
+          path={routePaths.reservations.yearAndReservationId}
+          element={<ReservationsPage />}
+        />
       </Route>
       {/* Catch-all for undefined routes */}
       <Route

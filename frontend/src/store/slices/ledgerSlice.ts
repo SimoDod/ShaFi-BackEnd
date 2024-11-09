@@ -14,7 +14,7 @@ const initialState: LedgerState = {
 };
 
 const ledgerSlice = createSlice({
-  name: "auth",
+  name: "ledger",
   initialState,
   reducers: {},
   extraReducers: ({ addCase }) => {

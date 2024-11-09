@@ -1,6 +1,7 @@
 import { Router } from "express";
 import authController from "./controllers/authController.js";
 import ledgerController from "./controllers/ledgerController.js";
+import reservationController from "./controllers/reservationController.js";
 import verifyToken from "./middlewares/verifyToken.js";
 import delayResponse from "./middlewares/delayResponse.js";
 
@@ -13,6 +14,12 @@ router.use(
   delayResponse(delayResponseMs),
   verifyToken,
   ledgerController,
+);
+router.use(
+  "/reservation",
+  delayResponse(delayResponseMs),
+  verifyToken,
+  reservationController,
 );
 
 export default router;

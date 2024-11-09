@@ -24,6 +24,8 @@ export const en = {
       no: "No",
       total: "Total",
       title: "Title",
+      note: "Note",
+      paid: "Paid",
     },
     navMenu: {
       dashboard: "Dashboard",
@@ -83,6 +85,12 @@ export const en = {
       ledgers: "Ledgers",
       createNewLedger: "Create new Ledger",
       selectLedgerColor: "Pick a ledger color",
+    },
+    reservationsPage: {
+      reservations: "Reservations",
+      createNewReservation: "Create new Reservation",
+      reservationStart: "Reservation Start",
+      reservationEnd: "Reservation End",
     },
     dashboard: {
       reservedDates: "Reserved dates",

@@ -14,6 +14,7 @@ const errMsg = {
   userIdNotFound: "User ID not found in the request",
   duplicate: "Duplicate",
   createLedgerFail: "Failed to create new ledger.",
+  createReservationFail: "Failed to create new reservation.",
   duplicateValue: "Duplicate value",
 } as const;
 

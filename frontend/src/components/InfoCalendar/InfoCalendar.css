@@ -1,0 +1,14 @@
+.react-calendar__month-view {
+  margin-bottom: 20px;
+}
+
+.react-calendar__navigation {
+  display: flex;
+}
+
+.react-calendar__navigation__label {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  flex-wrap: wrap;
+}
