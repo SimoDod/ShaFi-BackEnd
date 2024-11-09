@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { LedgerResponse } from "../../types/Ledger";
 import createLedgerThunk from "../thunks/ledger/createLedgerThunk";
+import fetchLedgersByYearThunk from "../thunks/ledger/fetchLedgersByYearThunk";
 
 type LedgerState = {
   ledgers: LedgerResponse[];
@@ -17,6 +18,21 @@ const ledgerSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: ({ addCase }) => {
+    // Fetch by year
+    addCase(fetchLedgersByYearThunk.pending, (state) => {
+      state.isLoading = true;
+    });
+    addCase(
+      fetchLedgersByYearThunk.fulfilled,
+      (state, action: PayloadAction<LedgerResponse[]>) => {
+        state.isLoading = false;
+        state.ledgers = action.payload;
+      }
+    );
+    addCase(fetchLedgersByYearThunk.rejected, (state) => {
+      state.isLoading = false;
+    });
+
     // Create
     addCase(createLedgerThunk.pending, (state) => {
       state.isLoading = true;

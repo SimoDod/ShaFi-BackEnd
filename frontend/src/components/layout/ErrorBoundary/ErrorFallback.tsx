@@ -17,7 +17,7 @@ const ErrorFallback = ({
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     resetError && resetError();
 
-    navigate(routePaths.dashboard.path);
+    navigate(routePaths.ledgers.path);
   };
 
   return (

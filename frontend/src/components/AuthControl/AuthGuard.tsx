@@ -10,7 +10,7 @@ const AuthGuard = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     if (!token) {
-      navigate(routePaths.authentication.path);
+      navigate(routePaths.login.path);
     }
   }, [token, navigate]);
 

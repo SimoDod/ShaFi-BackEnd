@@ -12,6 +12,7 @@ export const en = {
       add: "Add",
       edit: "Edit",
       create: "Create",
+      reset: "Reset",
     },
     common: {
       new: "New",
@@ -27,7 +28,7 @@ export const en = {
     navMenu: {
       dashboard: "Dashboard",
       reservations: "Reservations",
-      adminPanel: "Admin Panel",
+      ledgers: "Ledgers",
     },
     profileMenu: {
       profile: "Profile",
@@ -78,10 +79,13 @@ export const en = {
       fillBeforeSubmit:
         "Please fill in all the required fields before submitting.",
     },
-    dashboard: {
+    ledgersPage: {
       ledgers: "Ledgers",
       createNewLedger: "Create new Ledger",
       selectLedgerColor: "Pick a ledger color",
+    },
+    dashboard: {
+      reservedDates: "Reserved dates",
     },
     classColors: {
       default: "Default",

@@ -14,7 +14,7 @@ const Navigation = () => {
       <div className="navbar-start">
         <a
           className="btn btn-ghost text-xl"
-          onClick={() => navigate(routePaths.dashboard.path)}
+          onClick={() => navigate(routePaths.ledgers.path)}
         >
           ShaFi
         </a>

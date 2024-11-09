@@ -31,3 +31,17 @@ export const createLedger = async (
 
   return savedLedger;
 };
+
+export const getLedgersByYear = (year: string) => {
+  const startOfYear = new Date(`${year}-01-01T00:00:00Z`);
+  const endOfYear = new Date(`${parseInt(year) + 1}-01-01T00:00:00Z`);
+
+  const ledgersByYear = Ledger.find({
+    createdAt: {
+      $gte: startOfYear,
+      $lt: endOfYear,
+    },
+  });
+
+  return ledgersByYear;
+};

@@ -1,11 +1,15 @@
 export const routePaths = {
-  authentication: { label: "", path: "/authentication" },
+  login: { label: "", path: "/login" },
+  ledgers: {
+    label: "navMenu.ledgers",
+    path: "/ledgers/",
+    year: "/ledgers/:year",
+    yearAndLedgerId: "/ledgers/:year/:ledgerId",
+    create: "/create",
+  },
   dashboard: {
     label: "navMenu.dashboard",
     path: "/",
-    year: "/:year",
-    yearAndLedgerId: "/:year/:ledgerId",
-    create: "/create",
   },
   reservations: { label: "navMenu.reservations", path: "/reservations" },
   notFound: {

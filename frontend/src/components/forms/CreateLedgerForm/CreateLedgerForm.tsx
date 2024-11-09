@@ -40,7 +40,7 @@ const CreateLedgerForm = ({ isLoading = false, onSubmit }: Props) => {
             <FormikField name="title" label={t("common.title")} />
             <FormikField name="color" as="select">
               <option value="" disabled>
-                {t("dashboard.selectLedgerColor")}
+                {t("ledgersPage.selectLedgerColor")}
               </option>
               {ledgerColors.map((color) => (
                 <option key={color} value={color}>

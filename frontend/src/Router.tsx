@@ -5,26 +5,36 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { routePaths } from "./routerConfig";
-import GuestGuard from "./components/AuthControl/GuestGuard";
 import ErrorBoundary from "./components/layout/ErrorBoundary/ErrorBoundary";
 import AuthGuard from "./components/AuthControl/AuthGuard";
 import Layout from "./components/layout/Layout/Layout";
 import ErrorFallback from "./components/layout/ErrorBoundary/ErrorFallback";
-import DashboardPage from "./components/pages/DashboardPage/DashboardPage";
 import ReservationsPage from "./components/pages/ReservationsPage/ReservationsPage";
 import AuthenticationPage from "./components/pages/AuthenticationPage/AuthenticationPage";
+import LedgersPage from "./components/pages/LedgersPage/LedgersPage";
+import DashboardPage from "./components/pages/DashboardPage/DashboardPage";
+import GuestGuard from "./components/AuthControl/GuestGuard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route
-        path={routePaths.authentication.path}
+        path={routePaths.login.path}
         element={
           <GuestGuard>
             <ErrorBoundary>
               <AuthenticationPage />
             </ErrorBoundary>
           </GuestGuard>
+        }
+      />
+      <Route
+        path={routePaths.dashboard.path}
+        index
+        element={
+          <ErrorBoundary>
+            <DashboardPage />
+          </ErrorBoundary>
         }
       />
       <Route
@@ -36,11 +46,11 @@ const router = createBrowserRouter(
           </AuthGuard>
         }
       >
-        <Route index element={<DashboardPage />} />
-        <Route path={routePaths.dashboard.year} element={<DashboardPage />} />
+        <Route path={routePaths.ledgers.path} element={<LedgersPage />} />
+        <Route path={routePaths.ledgers.year} element={<LedgersPage />} />
         <Route
-          path={routePaths.dashboard.yearAndLedgerId}
-          element={<DashboardPage />}
+          path={routePaths.ledgers.yearAndLedgerId}
+          element={<LedgersPage />}
         />
         <Route
           path={routePaths.reservations.path}

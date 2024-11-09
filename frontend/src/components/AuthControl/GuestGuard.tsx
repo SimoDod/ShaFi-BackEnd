@@ -10,7 +10,7 @@ const GuestGuard = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     if (token) {
-      navigate(routePaths.dashboard.path);
+      navigate(routePaths.ledgers.path);
     }
   }, [token, navigate]);
 

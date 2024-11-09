@@ -1,14 +1,15 @@
 import {
+  faCalendarDays,
   faGear,
   faHome,
-  faLightbulb,
+  faReceipt,
   faRightFromBracket,
   faUser,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 import { routePaths } from "../../../routerConfig";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useLogout from "../../../hooks/useLogout";
 
 type MenuItem = {
@@ -23,19 +24,24 @@ const useNavigationItems = () => {
   const navigate = useNavigate();
   const logout = useLogout();
   const { pathname } = useLocation();
-  const { year } = useParams();
 
   const navMenuItems: MenuItem[] = [
     {
       label: t(routePaths.dashboard.label),
       icon: faHome,
-      isActive: routePaths.dashboard.path + year === pathname,
+      isActive: routePaths.dashboard.path === pathname,
       onClick: () => navigate(routePaths.dashboard.path),
     },
     {
+      label: t(routePaths.ledgers.label),
+      icon: faReceipt,
+      isActive: pathname.includes(routePaths.ledgers.path),
+      onClick: () => navigate(routePaths.ledgers.path),
+    },
+    {
       label: t(routePaths.reservations.label),
-      icon: faLightbulb,
-      isActive: routePaths.reservations.path === pathname,
+      icon: faCalendarDays,
+      isActive: pathname.includes(routePaths.reservations.path),
       onClick: () => navigate(routePaths.reservations.path),
     },
   ];

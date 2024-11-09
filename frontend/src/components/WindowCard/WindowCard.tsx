@@ -15,7 +15,7 @@ const WindowCard = ({
   contentClass,
 }: Props) => {
   return (
-    <div className="mockup-window shadow-xl bg-base-300 mb-10">
+    <div className="mockup-window shadow-2xl bg-base-300 mb-10">
       <div className="flex justify-between items-center flex-wrap pl-6 pr-6 mb-4">
         {heading}
         {extra}
