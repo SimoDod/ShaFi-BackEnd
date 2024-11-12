@@ -4,8 +4,7 @@ export enum ReservationModal {
 
 export type BaseReservationValues = {
   note: string;
-  reservationStart: string;
-  reservationEnd: string;
+  reservationDate: [string, string];
   paid: number;
 };
 

@@ -5,13 +5,30 @@ import { Types } from "mongoose";
 import type IReservation from "../types/interfaces/IReservation";
 import {
   createReservation,
+  findReservationByIdAndDelete,
+  getAllReservedDates,
   getReservationsByYear,
 } from "../services/reservationService";
+import verifyToken from "../middlewares/verifyToken";
 
 const router = express.Router();
 
 router.get(
+  "/all-reserved-dates",
+  async (_req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+    try {
+      const reservedDates = await getAllReservedDates();
+
+      return res.status(200).json(reservedDates);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+router.get(
   "/:year",
+  verifyToken,
   async (
     req: AuthenticatedRequest,
     res: Response<IReservation[]>,
@@ -30,6 +47,7 @@ router.get(
 
 router.post(
   "/create",
+  verifyToken,
   async (
     req: AuthenticatedRequest,
     res: Response<IReservation>,
@@ -41,6 +59,25 @@ router.post(
       const reservation = await createReservation(userId, reservationData);
 
       return res.status(201).json(reservation);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+router.delete(
+  "/delete-reservation/:id",
+  verifyToken,
+  async (
+    req: AuthenticatedRequest,
+    res: Response<IReservation>,
+    next: NextFunction,
+  ) => {
+    try {
+      const reservationId = req.params.id;
+      const reservation = await findReservationByIdAndDelete(reservationId);
+
+      return res.status(200).json(reservation);
     } catch (error) {
       next(error);
     }

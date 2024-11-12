@@ -9,7 +9,6 @@ const errorHandler = (
   res: Response,
   _next: NextFunction,
 ) => {
-
   // Duplicate key error (MongoDB code 11000)
   if (err.code === 11000 && err.keyValue) {
     const field = Object.keys(err.keyValue)[0];
@@ -37,6 +36,13 @@ const errorHandler = (
     return res.status(401).json({
       error: errMsg.somethingWrong,
       message: errMsg.invalidCredentials,
+    });
+  }
+
+  if (err.message === errMsg.datesReserved) {
+    return res.status(400).json({
+      error: errMsg.somethingWrong,
+      message: errMsg.datesReserved,
     });
   }
 

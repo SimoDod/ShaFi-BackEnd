@@ -13,6 +13,11 @@ export const en = {
       edit: "Edit",
       create: "Create",
       reset: "Reset",
+      confirm: "Confirm",
+    },
+    dialog: {
+      confirmAction: "Please confirm your action",
+      confirmDelete: "Please confirm delete",
     },
     common: {
       new: "New",
@@ -80,6 +85,7 @@ export const en = {
       allFieldsMandatory: "All fields are mandatory",
       fillBeforeSubmit:
         "Please fill in all the required fields before submitting.",
+      dateReserved: "The date you are trying to pick is already reserved.",
     },
     ledgersPage: {
       ledgers: "Ledgers",
@@ -89,8 +95,8 @@ export const en = {
     reservationsPage: {
       reservations: "Reservations",
       createNewReservation: "Create new Reservation",
-      reservationStart: "Reservation Start",
-      reservationEnd: "Reservation End",
+      editReservation: "Edit Reservation",
+      reservationDate: "Reservation Date",
     },
     dashboard: {
       reservedDates: "Reserved dates",

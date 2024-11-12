@@ -2,8 +2,7 @@ import type { Document, Types } from "mongoose";
 
 type IReservation = {
   note: string;
-  reservationStart: string;
-  reservationEnd: string;
+  reservationDate: [string, string];
   paid: number;
   ownerId: Types.ObjectId;
 } & Document;

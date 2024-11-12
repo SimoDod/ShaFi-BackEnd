@@ -3,13 +3,12 @@ import { isDate, format, isValid, parseISO } from "date-fns";
 export const dateFormats = {
   defaultSlash: "dd/MM/yyyy",
   defaultLine: "dd-MM-yyyy",
-  complete: "yyyy-MM-dd'T'HH:mm:ss.SSSxxx",
-  displayComplete: "dd/MM/yyyy - HH:mm:ss",
+  yearFirstLine: "yyyy-MM-dd",
 };
 
 const formatDateToString = (
   date: Date | string | null,
-  formatType = dateFormats.displayComplete
+  formatType = dateFormats.defaultSlash
 ): string | null => {
   if (!date) return null;
 

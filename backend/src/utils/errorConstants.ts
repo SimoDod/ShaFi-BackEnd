@@ -16,6 +16,8 @@ const errMsg = {
   createLedgerFail: "Failed to create new ledger.",
   createReservationFail: "Failed to create new reservation.",
   duplicateValue: "Duplicate value",
+  datesReserved: "Some of these dates are already reserved.",
+  itemNotFound: "Item not found.",
 } as const;
 
 export default errMsg;

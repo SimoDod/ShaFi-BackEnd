@@ -4,7 +4,8 @@ import App from "./App.tsx";
 import "./output.css";
 import { Provider } from "react-redux";
 import { reduxStore } from "./store/store.ts";
-import { NotificationContextProvider } from "./context/notification/NotificationContextProvider.tsx";
+import NotificationContextProvider from "./context/notification/NotificationContextProvider.tsx";
+import DialogContextProvider from "./context/dialog/DialogContextProvider.tsx";
 
 const store = reduxStore();
 
@@ -12,7 +13,9 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <NotificationContextProvider>
-        <App />
+        <DialogContextProvider>
+          <App />
+        </DialogContextProvider>
       </NotificationContextProvider>
     </Provider>
   </StrictMode>

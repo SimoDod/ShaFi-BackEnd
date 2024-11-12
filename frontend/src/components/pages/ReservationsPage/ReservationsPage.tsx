@@ -18,20 +18,29 @@ import CreateReservationForm from "../../forms/CreateReservationForm/CreateReser
 import createReservationThunk from "../../../store/thunks/reservation/createReservationThunk";
 import { useEffect } from "react";
 import fetchReservationByYearThunk from "../../../store/thunks/reservation/fetchReservationByYearThunk";
+import fetchAllReservationDatesThunk from "../../../store/thunks/reservation/fetchAllReservationDatesThunk";
+import { getReservationByIdAndExcludeReservedDates } from "../../../store/slices/reservationSlice";
 
 const ReservationsPage = () => {
   const { t } = useTranslation();
   const { year, reservationId } = useParams();
   const dispatch = useAppDispatch();
-  const reservations = useAppSelector(
-    (state) => state.reservation.reservations
-  );
+  const { reservations, reservedDates, reservedDatesWithExclusion } =
+    useAppSelector((state) => state.reservation);
   const userId = useAppSelector((state) => state.auth.user._id);
   const navigate = useNavigate();
   const { goToPreviousYear, goToNextYear } = useYearNavigation(
     routePaths.reservations.path,
     year
   );
+
+  useEffect(() => {
+    dispatch(fetchAllReservationDatesThunk());
+
+    if (reservationId && reservationId !== ReservationModal.CREATE) {
+      dispatch(getReservationByIdAndExcludeReservedDates(reservationId));
+    }
+  }, [dispatch, reservationId]);
 
   const handleSubmit = async (values: BaseReservationValues) => {
     const { meta } = await dispatch(
@@ -51,12 +60,27 @@ const ReservationsPage = () => {
 
   return (
     <>
+      {reservationId && reservationId !== ReservationModal.CREATE && (
+        <Modal
+          onClose={() => navigate(`${routePaths.reservations.path}${year}`)}
+          title={t("reservationsPage.editReservation")}
+        >
+          <CreateReservationForm
+            onSubmit={handleSubmit}
+            reservation={reservations.find(({ _id }) => _id === reservationId)}
+            reservedDates={reservedDatesWithExclusion}
+          />
+        </Modal>
+      )}
       {reservationId === ReservationModal.CREATE && (
         <Modal
           onClose={() => navigate(`${routePaths.reservations.path}${year}`)}
           title={t("reservationsPage.createNewReservation")}
         >
-          <CreateReservationForm onSubmit={handleSubmit} />
+          <CreateReservationForm
+            onSubmit={handleSubmit}
+            reservedDates={reservedDates}
+          />
         </Modal>
       )}
       <div className="2xl:pr-40 2xl:pl-40">

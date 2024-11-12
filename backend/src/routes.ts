@@ -18,7 +18,6 @@ router.use(
 router.use(
   "/reservation",
   delayResponse(delayResponseMs),
-  verifyToken,
   reservationController,
 );
 

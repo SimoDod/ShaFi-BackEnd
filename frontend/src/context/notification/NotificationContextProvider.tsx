@@ -1,10 +1,10 @@
 import { useState, useEffect, PropsWithChildren } from "react";
 import Icon from "../../components/common/Icon/Icon";
 import {
-  faCheck,
-  faExclamation,
+  faCheckCircle,
+  faExclamationCircle,
   faExclamationTriangle,
-  faInfo,
+  faInfoCircle,
   faXmarkCircle,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,19 +14,17 @@ import { clearMessage } from "../../store/slices/notificationSlice";
 import { Transition } from "@headlessui/react";
 
 const notificationIcons: Record<NotificationType, IconDefinition> = {
-  success: faCheck,
-  alert: faInfo,
+  success: faCheckCircle,
+  alert: faInfoCircle,
   error: faXmarkCircle,
-  info: faExclamation,
+  info: faExclamationCircle,
   warning: faExclamationTriangle,
 };
 
 const notificationDisplayDuration = 4000;
 const fadeOutDuration = 500;
 
-export const NotificationContextProvider = ({
-  children,
-}: PropsWithChildren) => {
+const NotificationContextProvider = ({ children }: PropsWithChildren) => {
   const storeMessage = useAppSelector((state) => state.notification.message);
   const [message, setMessage] = useState("");
   const [type, setType] = useState<NotificationType>("alert");
@@ -94,3 +92,5 @@ export const NotificationContextProvider = ({
     </NotificationContext.Provider>
   );
 };
+
+export default NotificationContextProvider;
