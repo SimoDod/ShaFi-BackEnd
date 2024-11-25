@@ -6,7 +6,7 @@ import verifyToken from "./middlewares/verifyToken.js";
 import delayResponse from "./middlewares/delayResponse.js";
 
 const router = Router();
-const delayResponseMs = 1; // Simulate slow satellite internet speed
+const delayResponseMs = 0;
 
 router.use("/auth", delayResponse(delayResponseMs), authController);
 router.use(

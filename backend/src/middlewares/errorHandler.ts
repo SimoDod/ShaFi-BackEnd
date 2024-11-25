@@ -46,6 +46,13 @@ const errorHandler = (
     });
   }
 
+  if (err.message === errMsg.tooManyRequests) {
+    return res.status(429).json({
+      error: errMsg.somethingWrong,
+      message: errMsg.tooManyRequests,
+    });
+  }
+
   // Default to 500 server error
   return res.status(500).json({
     error: errMsg.somethingWrong,

@@ -13,7 +13,6 @@ const AuthenticationPage = () => {
     initialValues,
     authModeKeys,
     authMode,
-    toggleAuthMode,
     handleAuthentication,
   } = useAuthenticationPage();
 
@@ -25,14 +24,14 @@ const AuthenticationPage = () => {
             {t(`${authMode}.keyWord`)}{" "}
             <span className="text-primary">{t(`${authMode}.now`)}</span>
           </h1>
-          <p className="py-6 max-w-xl mx-auto lg:mx-0">
+          {/* <p className="py-6 max-w-xl mx-auto lg:mx-0">
             {t(`${authMode}.toContinueUsing`)} {t(`${authMode}.action`)}
             <br />
             {t(`${authMode}.hasAccount`)}{" "}
             <a onClick={toggleAuthMode} className="link text-primary">
               {t(`${authMode}.link`)}
             </a>
-          </p>
+          </p> */}
         </div>
         <div className="card bg-base-100 lg:min-w-96 shadow-2xl">
           <Formik

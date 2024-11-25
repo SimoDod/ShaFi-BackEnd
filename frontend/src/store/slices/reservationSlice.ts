@@ -7,6 +7,7 @@ import deleteReservationThunk from "../thunks/reservation/deleteReservationThunk
 import { eachDayOfInterval } from "date-fns/eachDayOfInterval";
 import { dateFormats } from "../../utils/date/formatDateToString";
 import { format } from "date-fns/format";
+import updateReservationThunk from "../thunks/reservation/updateReservationThunk";
 
 type ReservationState = {
   reservations: ReservationResponse[];
@@ -92,6 +93,25 @@ const reservationSlice = createSlice({
       }
     );
     addCase(createReservationThunk.rejected, (state) => {
+      state.isLoading = false;
+    });
+
+    // Update
+    addCase(updateReservationThunk.pending, (state) => {
+      state.isLoading = true;
+    });
+    addCase(
+      updateReservationThunk.fulfilled,
+      (state, action: PayloadAction<ReservationResponse>) => {
+        state.isLoading = false;
+        const reservationIndex = state.reservations.findIndex(
+          ({ _id }) => action.payload._id === _id
+        );
+
+        state.reservations[reservationIndex] = action.payload;
+      }
+    );
+    addCase(updateReservationThunk.rejected, (state) => {
       state.isLoading = false;
     });
 

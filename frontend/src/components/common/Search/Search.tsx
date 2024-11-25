@@ -3,12 +3,12 @@ import Icon from "../Icon/Icon";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
-  onClick: () => void;
+  onClick?: () => void;
   onSearch: (value: string) => void;
   onCriteriaSelect?: (value: string) => void;
-  criteria: boolean;
-  searchCriteria: string;
-  criteriaOptions: string[];
+  criteria?: boolean;
+  searchCriteria?: string;
+  criteriaOptions?: string[];
 } & PropsWithChildren;
 
 const Search = ({
@@ -42,7 +42,6 @@ const Search = ({
           ))}
         </select>
       )}
-
       <button onClick={onClick} className="btn btn-primary join-item">
         <Icon icon={faSearch} />
       </button>

@@ -18,3 +18,7 @@ export type ReservationResponse = {
 export type ReservationRequest = {
   userId: string;
 } & BaseReservationValues;
+
+export type ReservationUpdateRequest = {
+  reservationId: string;
+} & ReservationRequest;

@@ -16,10 +16,12 @@ import {
 } from "../../../types/Reservation";
 import CreateReservationForm from "../../forms/CreateReservationForm/CreateReservationForm";
 import createReservationThunk from "../../../store/thunks/reservation/createReservationThunk";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import fetchReservationByYearThunk from "../../../store/thunks/reservation/fetchReservationByYearThunk";
 import fetchAllReservationDatesThunk from "../../../store/thunks/reservation/fetchAllReservationDatesThunk";
 import { getReservationByIdAndExcludeReservedDates } from "../../../store/slices/reservationSlice";
+import updateReservationThunk from "../../../store/thunks/reservation/updateReservationThunk";
+import filterReservationsByValue from "../../../utils/reservation/filterReservationsByValue";
 
 const ReservationsPage = () => {
   const { t } = useTranslation();
@@ -29,22 +31,30 @@ const ReservationsPage = () => {
     useAppSelector((state) => state.reservation);
   const userId = useAppSelector((state) => state.auth.user._id);
   const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState("");
   const { goToPreviousYear, goToNextYear } = useYearNavigation(
     routePaths.reservations.path,
     year
   );
+  const isReservationUpdate =
+    reservationId && reservationId !== ReservationModal.CREATE;
+  const isReservationCreate = reservationId === ReservationModal.CREATE;
 
   useEffect(() => {
     dispatch(fetchAllReservationDatesThunk());
 
-    if (reservationId && reservationId !== ReservationModal.CREATE) {
+    if (isReservationUpdate) {
       dispatch(getReservationByIdAndExcludeReservedDates(reservationId));
     }
-  }, [dispatch, reservationId]);
+  }, [dispatch, isReservationUpdate, reservationId]);
 
   const handleSubmit = async (values: BaseReservationValues) => {
+    const reservationWithUserId = { userId, ...values };
+
     const { meta } = await dispatch(
-      createReservationThunk({ userId, ...values })
+      isReservationUpdate
+        ? updateReservationThunk({ ...reservationWithUserId, reservationId })
+        : createReservationThunk(reservationWithUserId)
     );
 
     if (meta.requestStatus === "fulfilled") {
@@ -60,7 +70,7 @@ const ReservationsPage = () => {
 
   return (
     <>
-      {reservationId && reservationId !== ReservationModal.CREATE && (
+      {isReservationUpdate && (
         <Modal
           onClose={() => navigate(`${routePaths.reservations.path}${year}`)}
           title={t("reservationsPage.editReservation")}
@@ -72,7 +82,7 @@ const ReservationsPage = () => {
           />
         </Modal>
       )}
-      {reservationId === ReservationModal.CREATE && (
+      {isReservationCreate && (
         <Modal
           onClose={() => navigate(`${routePaths.reservations.path}${year}`)}
           title={t("reservationsPage.createNewReservation")}
@@ -111,9 +121,11 @@ const ReservationsPage = () => {
             >
               <Icon icon={faPlusCircle} />
             </button>
-            <Search />
+            <Search onSearch={(value) => setSearchValue(value)} />
           </div>
-          <ReservationsTable reservations={reservations} />
+          <ReservationsTable
+            reservations={filterReservationsByValue(searchValue, reservations)}
+          />
         </WindowCard>
       </div>
     </>

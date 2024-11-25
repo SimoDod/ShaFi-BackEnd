@@ -8,6 +8,7 @@ import {
   findReservationByIdAndDelete,
   getAllReservedDates,
   getReservationsByYear,
+  updateReservation,
 } from "../services/reservationService";
 import verifyToken from "../middlewares/verifyToken";
 
@@ -59,6 +60,32 @@ router.post(
       const reservation = await createReservation(userId, reservationData);
 
       return res.status(201).json(reservation);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+router.put(
+  "/:reservationId",
+  verifyToken,
+  async (
+    req: AuthenticatedRequest,
+    res: Response<IReservation>,
+    next: NextFunction,
+  ) => {    
+    try {
+      const { reservationId } = req.params;
+      const userId = req.user ? new Types.ObjectId(req.user) : null;
+      const updatedReservationData: Partial<IReservation> = req.body;
+
+      const updatedReservation = await updateReservation(
+        userId,
+        reservationId,
+        updatedReservationData,
+      );
+
+      return res.status(200).json(updatedReservation);
     } catch (error) {
       next(error);
     }

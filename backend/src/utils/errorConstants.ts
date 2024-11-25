@@ -15,9 +15,11 @@ const errMsg = {
   duplicate: "Duplicate",
   createLedgerFail: "Failed to create new ledger.",
   createReservationFail: "Failed to create new reservation.",
+  updateItemFail: "Failed to update the item.",
   duplicateValue: "Duplicate value",
   datesReserved: "Some of these dates are already reserved.",
   itemNotFound: "Item not found.",
+  tooManyRequests: "Too many requests from this IP, please try again later.",
 } as const;
 
 export default errMsg;

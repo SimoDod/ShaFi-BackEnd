@@ -3,19 +3,22 @@ import { api } from "../../../api/api";
 import { AxiosError, HttpStatusCode } from "axios";
 import i18n from "../../../localization/i18n";
 import {
-  ReservationRequest,
   ReservationResponse,
+  ReservationUpdateRequest,
 } from "../../../types/Reservation";
 
-const createReservationThunk = createAsyncThunk<
+const updateReservationThunk = createAsyncThunk<
   ReservationResponse,
-  ReservationRequest,
+  ReservationUpdateRequest,
   { rejectValue: string }
 >(
-  "reservation/createReservationThunk",
+  "reservation/updateReservationThunk",
   async (reservation, { rejectWithValue }) => {
     try {
-      const response = await api.post("/reservation/create", reservation);
+      const response = await api.put(
+        `/reservation/${reservation.reservationId}`,
+        reservation
+      );
 
       return response.data;
     } catch (error) {
@@ -31,4 +34,4 @@ const createReservationThunk = createAsyncThunk<
   }
 );
 
-export default createReservationThunk;
+export default updateReservationThunk;

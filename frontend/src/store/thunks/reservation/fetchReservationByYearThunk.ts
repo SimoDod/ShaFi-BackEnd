@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../../api/api";
-import { AxiosError } from "axios";
+import { AxiosError, HttpStatusCode } from "axios";
 import i18n from "../../../localization/i18n";
 import { ReservationResponse } from "../../../types/Reservation";
 
@@ -17,6 +17,9 @@ const fetchReservationByYearThunk = createAsyncThunk<
       return response.data;
     } catch (error) {
       if (error instanceof AxiosError && error.response) {
+        if (error.status === HttpStatusCode.TooManyRequests) {
+          return rejectWithValue(error.response?.data);
+        }
         return rejectWithValue(error.response.data?.details.join(", "));
       }
 

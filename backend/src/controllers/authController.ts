@@ -1,25 +1,25 @@
 import type { Request, Response, NextFunction } from "express";
 import express from "express";
-import { registerUser, loginUser, findUserById } from "../services/authService";
+import { loginUser, findUserById } from "../services/authService";
 import type { AuthenticatedRequest } from "../types/Authentication";
 import errMsg from "../utils/errorConstants";
 import verifyToken from "../middlewares/verifyToken";
 
 const router = express.Router();
 
-router.post(
-  "/register",
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const { username, email, password } = req.body;
-      const result = await registerUser(username, email, password);
+// router.post(
+//   "/register",
+//   async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//       const { username, email, password } = req.body;
+//       const result = await registerUser(username, email, password);
 
-      return res.status(201).json(result);
-    } catch (error) {
-      next(error);
-    }
-  },
-);
+//       return res.status(201).json(result);
+//     } catch (error) {
+//       next(error);
+//     }
+//   },
+// );
 
 router.post(
   "/login",

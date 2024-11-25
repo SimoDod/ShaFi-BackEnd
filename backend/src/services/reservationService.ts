@@ -62,6 +62,55 @@ export const getReservationsByYear = async (year: string) => {
   return reservations;
 };
 
+export const updateReservation = async (
+  userId: Types.ObjectId | null,
+  reservationId: string,
+  updatedReservationData: Partial<IReservation>,
+) => {
+  if (!userId) {
+    throw new Error(errMsg.userIdNotFound);
+  }
+
+  const existingReservation = await Reservation.findOne({
+    _id: reservationId,
+    ownerId: userId,
+  });
+
+  if (!existingReservation) {
+    throw new Error(errMsg.itemNotFound);
+  }
+
+  if (updatedReservationData.reservationDate) {
+    const { reservationDate } = updatedReservationData;
+    const [start, end] = reservationDate;
+    const reservedDates = eachDayOfInterval({
+      start,
+      end,
+    }).map((date) => format(date, dateFormats.yearFirstLine));
+
+    const overlappingReservations = await Reservation.find({
+      _id: { $ne: reservationId },
+      reservationDate: { $in: reservedDates },
+    }).exec();
+
+    if (overlappingReservations.length > 0) {
+      throw new Error(errMsg.datesReserved);
+    }
+  }
+
+  const updatedReservation = await Reservation.findByIdAndUpdate(
+    reservationId,
+    updatedReservationData,
+    { new: true },
+  );
+
+  if (!updatedReservation) {
+    throw new Error(errMsg.updateItemFail);
+  }
+
+  return updatedReservation;
+};
+
 export const getAllReservedDates = async (): Promise<string[]> => {
   const reservations = await Reservation.find().exec();
 
