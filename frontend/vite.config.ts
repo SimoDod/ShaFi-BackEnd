@@ -7,8 +7,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     minify: "esbuild",
-    outDir: "../backend/dist",
-    emptyOutDir: true,
+    outDir: "../../github-pages/simodod.github.io",
   },
   css: {
     postcss: {
