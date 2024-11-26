@@ -9,9 +9,7 @@ type Props = {
   centered?: boolean;
   onClose: () => void;
 } & PropsWithChildren;
-{
-  /* <div className="modal-box w-full max-w-3xl p-4 sm:max-w-full sm:p-4"></div> */
-}
+
 const Modal = ({
   onClose,
   title,
