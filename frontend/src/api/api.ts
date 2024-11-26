@@ -12,9 +12,14 @@ export const api = axios.create({ baseURL });
 api.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   const token = getAuthToken();
 
-  config.headers.Authorization = `Bearer ${token}`;
-
-  return config;
+  return {
+    ...config,
+    headers: {
+      ...config.headers,
+      Authorization: `Bearer ${token}`,
+      "ngrok-skip-browser-warning": "skip-browser-warning",
+    },
+  } as unknown as InternalAxiosRequestConfig;
 });
 
 api.interceptors.response.use(

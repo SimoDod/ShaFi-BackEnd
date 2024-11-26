@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     minify: "esbuild",
-    outDir: "../D24-BackEnd/dist",
+    outDir: "../backend/dist",
     emptyOutDir: true,
   },
   css: {

@@ -30,7 +30,6 @@ const InfoCalendar = ({ reservedDates = [] }: { reservedDates?: string[] }) => {
   const [isDoubleView, setIsDoubleView] = useState(false);
   const [isMap, setIsMap] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
-  console.log(reservedDates);
   
   const isReserved = (date: Date) =>
     reservedDates.includes(formatISO(date, { representation: "date" }));
