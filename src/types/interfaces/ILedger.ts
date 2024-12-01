@@ -1,8 +1,9 @@
 import type { Document, Types } from "mongoose";
+import type Expense from "../Expense";
 
-type ILedger = {
+type ILedger = Document & {
   title: string;
-  total: Number;
+  total: number;
   color:
     | "default"
     | "primary"
@@ -13,7 +14,7 @@ type ILedger = {
     | "info"
     | "error";
   ownerId: Types.ObjectId;
-  expenses: Types.ObjectId[];
-} & Document;
+  expenses: Expense[];
+};
 
 export default ILedger;

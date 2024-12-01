@@ -85,7 +85,7 @@ router.put(
         updatedReservationData,
       );
 
-      return res.status(200).json(updatedReservation);
+      return res.status(201).json(updatedReservation);
     } catch (error) {
       next(error);
     }
@@ -104,7 +104,7 @@ router.delete(
       const reservationId = req.params.id;
       const reservation = await findReservationByIdAndDelete(reservationId);
 
-      return res.status(200).json(reservation);
+      return res.status(201).json(reservation);
     } catch (error) {
       next(error);
     }

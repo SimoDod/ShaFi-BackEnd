@@ -13,10 +13,7 @@ const errorHandler = (
   if (err.code === 11000 && err.keyValue) {
     const field = Object.keys(err.keyValue)[0];
 
-    return res.status(400).json({
-      error: `${errMsg.duplicateValue} ${field}`,
-      message: `${errMsg.duplicateValue} ${field} `,
-    });
+    return res.status(400).json([`${errMsg.duplicateValue} ${field} `]);
   }
 
   // Validation error (Mongoose validation)
@@ -25,39 +22,25 @@ const errorHandler = (
       ({ message }: { message: string }) => message,
     );
 
-    return res.status(400).json({
-      error: errMsg.validationError,
-      details: messages,
-    });
+    return res.status(400).json(messages);
   }
 
   // Invalid credentials
   if (err.message === errMsg.invalidCredentials) {
-    return res.status(401).json({
-      error: errMsg.somethingWrong,
-      message: errMsg.invalidCredentials,
-    });
+    return res.status(401).json([errMsg.invalidCredentials]);
   }
 
   if (err.message === errMsg.datesReserved) {
-    return res.status(400).json({
-      error: errMsg.somethingWrong,
-      message: errMsg.datesReserved,
-    });
+    return res.status(400).json([errMsg.datesReserved]);
   }
 
+  // Too many requests
   if (err.message === errMsg.tooManyRequests) {
-    return res.status(429).json({
-      error: errMsg.somethingWrong,
-      message: errMsg.tooManyRequests,
-    });
+    return res.status(429).json([errMsg.tooManyRequests]);
   }
 
   // Default to 500 server error
-  return res.status(500).json({
-    error: errMsg.somethingWrong,
-    message: err.message || errMsg.internalError,
-  });
+  return res.status(500).json([err.message || errMsg.internalError]);
 };
 
 export default errorHandler;

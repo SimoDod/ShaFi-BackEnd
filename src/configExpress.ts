@@ -12,7 +12,7 @@ import errMsg from "./utils/errorConstants";
 const __dirname = path.dirname(__filename); */
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 100 requests per 15 minutes limit
-  max: 100,
+  max: 10000,
   message: errMsg.tooManyRequests,
 });
 

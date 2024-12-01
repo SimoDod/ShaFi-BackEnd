@@ -1,12 +1,12 @@
-import type { Document, Types } from "mongoose";
+import type { Document, ObjectId } from "mongoose";
 
 type IUser = {
   username: string;
   email: string;
   password: string;
   role: "user" | "admin";
-  ledgers: Types.ObjectId[];
-  reservations: Types.ObjectId[];
+  ledgers: ObjectId[];
+  reservations: ObjectId[];
   generateSuccessMessage(): { message: string; user: object };
 } & Document;
 

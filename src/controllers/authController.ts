@@ -4,6 +4,8 @@ import { loginUser, findUserById } from "../services/authService";
 import type { AuthenticatedRequest } from "../types/Authentication";
 import errMsg from "../utils/errorConstants";
 import verifyToken from "../middlewares/verifyToken";
+import Ledger from "../models/Ledger";
+import Reservation from "../models/Reservation";
 
 const router = express.Router();
 
@@ -53,6 +55,36 @@ router.get(
       }
 
       res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  },
+);
+
+router.get(
+  "/total-balance",
+  verifyToken,
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const ledgers = await Ledger.find();
+      const totalLedgerBalance = ledgers.reduce(
+        (sum, ledger) => sum + ledger.total,
+        0,
+      );
+      
+      const reservations = await Reservation.find();
+      const totalPaidReservations = reservations.reduce(
+        (sum, reservation) => sum + reservation.paid,
+        0,
+      );
+
+      const totalBalance = totalLedgerBalance - totalPaidReservations;
+
+      return res.status(200).json({
+        totalLedgerBalance,
+        totalPaidReservations,
+        totalBalance,
+      });
     } catch (error) {
       next(error);
     }
