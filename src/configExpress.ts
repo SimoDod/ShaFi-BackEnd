@@ -11,8 +11,8 @@ import errMsg from "./utils/errorConstants";
 /* const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename); */
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 100 requests per 15 minutes limit
-  max: 10000,
+  windowMs: 15 * 60 * 1000, // 300 requests per 15 minutes limit
+  max: 300,
   message: errMsg.tooManyRequests,
 });
 
