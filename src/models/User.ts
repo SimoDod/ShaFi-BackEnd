@@ -12,8 +12,6 @@ const UserSchema = new Schema<IUser>(
       enum: ["user", "admin"],
       default: "user",
     },
-    ledgers: [{ type: Schema.Types.ObjectId, ref: "Ledger" }],
-    reservations: [{ type: Schema.Types.ObjectId, ref: "Reservation" }],
   },
   { timestamps: true },
 );
