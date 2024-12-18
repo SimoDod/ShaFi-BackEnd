@@ -3,10 +3,10 @@ import type { Application } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
-import routes from "./routes";
-import errorHandler from "./middlewares/errorHandler";
+import routes from "./routes.js";
+import errorHandler from "./middlewares/errorHandler.js";
 import rateLimit from "express-rate-limit";
-import errMsg from "./utils/errorConstants";
+import errMsg from "./utils/errorConstants.js";
 
 /* const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename); */

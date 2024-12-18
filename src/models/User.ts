@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
-import errMsg from "../utils/errorConstants";
-import type IUser from "../types/interfaces/IUser";
+import errMsg from "../utils/errorConstants.js";
+import type IUser from "../types/interfaces/IUser.js";
 
 const UserSchema = new Schema<IUser>(
   {

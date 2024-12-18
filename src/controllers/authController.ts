@@ -1,11 +1,11 @@
 import type { Request, Response, NextFunction } from "express";
 import express from "express";
-import { loginUser, findUserById } from "../services/authService";
-import type { AuthenticatedRequest } from "../types/Authentication";
-import errMsg from "../utils/errorConstants";
-import verifyToken from "../middlewares/verifyToken";
-import Ledger from "../models/Ledger";
-import Reservation from "../models/Reservation";
+import { loginUser, findUserById } from "../services/authService.js";
+import type { AuthenticatedRequest } from "../types/Authentication.js";
+import errMsg from "../utils/errorConstants.js";
+import verifyToken from "../middlewares/verifyToken.js";
+import Ledger from "../models/Ledger.js";
+import Reservation from "../models/Reservation.js";
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import type { Response, NextFunction } from "express";
-import errMsg from "../utils/errorConstants";
-import type { AuthenticatedRequest } from "../types/Authentication";
+import errMsg from "../utils/errorConstants.js";
+import type { AuthenticatedRequest } from "../types/Authentication.js";
 
 const verifyToken = (
   req: AuthenticatedRequest,

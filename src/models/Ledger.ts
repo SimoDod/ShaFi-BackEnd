@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import type ILedger from "../types/interfaces/ILedger";
+import type ILedger from "../types/interfaces/ILedger.js";
 
 const LedgerSchema = new Schema<ILedger>(
   {

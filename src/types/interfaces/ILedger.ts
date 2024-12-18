@@ -1,5 +1,5 @@
 import type { Document, Types } from "mongoose";
-import type Expense from "../Expense";
+import type Expense from "../Expense.js";
 
 type ILedger = Document & {
   title: string;

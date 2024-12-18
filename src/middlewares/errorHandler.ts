@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
-import errMsg from "../utils/errorConstants";
-import type { MongoError } from "../types/MongoError";
+import errMsg from "../utils/errorConstants.js";
+import type { MongoError } from "../types/MongoError.js";
 
 const errorHandler = (
   err: MongoError,

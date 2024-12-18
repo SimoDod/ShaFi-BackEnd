@@ -1,11 +1,11 @@
 import type { Types } from "mongoose";
-import errMsg from "../utils/errorConstants";
-import User from "../models/User";
-import type IReservation from "../types/interfaces/IReservation";
-import Reservation from "../models/Reservation";
+import errMsg from "../utils/errorConstants.js";
+import User from "../models/User.js";
+import type IReservation from "../types/interfaces/IReservation.js";
+import Reservation from "../models/Reservation.js";
 import { eachDayOfInterval } from "date-fns/eachDayOfInterval";
 import { format, parseISO } from "date-fns";
-import { dateFormats } from "../utils/constants";
+import { dateFormats } from "../utils/constants.js";
 
 export const createReservation = async (
   userId: Types.ObjectId | null,

@@ -1,16 +1,16 @@
 import type { Response, NextFunction } from "express";
 import express from "express";
-import type { AuthenticatedRequest } from "../types/Authentication";
+import type { AuthenticatedRequest } from "../types/Authentication.js";
 import { Types } from "mongoose";
-import type IReservation from "../types/interfaces/IReservation";
+import type IReservation from "../types/interfaces/IReservation.js";
 import {
   createReservation,
   findReservationByIdAndDelete,
   getAllReservedDates,
   getReservationsByYear,
   updateReservation,
-} from "../services/reservationService";
-import verifyToken from "../middlewares/verifyToken";
+} from "../services/reservationService.js";
+import verifyToken from "../middlewares/verifyToken.js";
 
 const router = express.Router();
 

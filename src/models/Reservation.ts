@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import type IReservation from "../types/interfaces/IReservation";
+import type IReservation from "../types/interfaces/IReservation.js";
 
 const ReservationSchema = new Schema<IReservation>(
   {

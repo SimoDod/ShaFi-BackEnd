@@ -1,9 +1,9 @@
 import type { Types } from "mongoose";
-import Ledger from "../models/Ledger";
-import type ILedger from "../types/interfaces/ILedger";
-import errMsg from "../utils/errorConstants";
-import User from "../models/User";
-import type Expense from "../types/Expense";
+import Ledger from "../models/Ledger.js";
+import type ILedger from "../types/interfaces/ILedger.js";
+import errMsg from "../utils/errorConstants.js";
+import User from "../models/User.js";
+import type Expense from "../types/Expense.js";
 
 export const createLedger = async (
   userId: Types.ObjectId | null,

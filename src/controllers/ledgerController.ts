@@ -1,14 +1,14 @@
 import type { Response, NextFunction } from "express";
 import express from "express";
-import type { AuthenticatedRequest } from "../types/Authentication";
-import type ILedger from "../types/interfaces/ILedger";
+import type { AuthenticatedRequest } from "../types/Authentication.js";
+import type ILedger from "../types/interfaces/ILedger.js";
 import {
   createLedger,
   addNewExpense,
   findLedgerByIdAndDelete,
   getLedgersByYear,
   deleteExpense,
-} from "../services/ledgerService";
+} from "../services/ledgerService.js";
 import { Types } from "mongoose";
 
 const router = express.Router();
