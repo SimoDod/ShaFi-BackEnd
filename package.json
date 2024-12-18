@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch index.ts",
-    "start": "pm2 start ./dist/index.js",
+    "start": "pm2 start ./dist/index.js --name ShaFi",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
