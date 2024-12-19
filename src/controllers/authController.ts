@@ -78,7 +78,7 @@ router.get(
         0,
       );
 
-      const totalBalance = totalLedgerBalance - totalPaidReservations;
+      const totalBalance = totalPaidReservations - totalLedgerBalance;
 
       return res.status(200).json({
         totalLedgerBalance,
