@@ -28,7 +28,16 @@ const configExpress = (app: Application) => {
       credentials: true,
     }),
   );
-  app.use(helmet());
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          connectSrc: ["'self'", "https://adascout.com"],
+        },
+      },
+    }),
+  );
   app.use(bodyParser.json());
   app.use(e.static(path.join(__dirname, "../../distStatic")));
   app.use(limiter);
