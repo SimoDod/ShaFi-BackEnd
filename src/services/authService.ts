@@ -27,7 +27,7 @@ export const registerUser = async (
   const { password: userPassword, ...safeUserData } = user;
 
   const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-    expiresIn: "24h",
+    expiresIn: "60d",
   });
 
   return { token, user: safeUserData };
