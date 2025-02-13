@@ -22,7 +22,12 @@ const limiter = rateLimit({
 
 const configExpress = (app: Application) => {
   app.use(morgan("dev"));
-  app.use(cors());
+  app.use(
+    cors({
+      origin: ["http://localhost:3000", "https://adascout.com"],
+      credentials: true,
+    }),
+  );
   app.use(helmet());
   app.use(bodyParser.json());
   app.use(e.static(path.join(__dirname, "../../distStatic")));
