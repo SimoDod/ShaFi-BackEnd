@@ -7,7 +7,7 @@ import helmet from "helmet";
 import routes from "./routes.js";
 import errorHandler from "./middlewares/errorHandler.js";
 import rateLimit from "express-rate-limit";
-import errMsg from "./utils/errorConstants";
+import errMsg from "./utils/errorConstants.js";
 import { fileURLToPath } from "url";
 import e from "express";
 import path from "path";
@@ -25,11 +25,11 @@ const configExpress = (app: Application) => {
   app.use(cors());
   app.use(helmet());
   app.use(bodyParser.json());
-  app.use(e.static(path.join(__dirname, "../dist")));
+  app.use(e.static(path.join(__dirname, "../distStatic")));
   app.use(limiter);
   app.use("/api", routes);
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../dist", "index.html"));
+    res.sendFile(path.resolve(__dirname, "../distStatic", "index.html"));
   });
   app.use(errorHandler);
   return app;
