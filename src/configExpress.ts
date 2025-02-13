@@ -25,11 +25,11 @@ const configExpress = (app: Application) => {
   app.use(cors());
   app.use(helmet());
   app.use(bodyParser.json());
-  app.use(e.static(path.join(__dirname, "../distStatic")));
+  app.use(e.static(path.join(__dirname, "../../distStatic")));
   app.use(limiter);
   app.use("/api", routes);
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../distStatic", "index.html"));
+    res.sendFile(path.resolve(__dirname, "../../distStatic", "index.html"));
   });
   app.use(errorHandler);
   return app;
