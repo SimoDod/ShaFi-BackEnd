@@ -21,19 +21,28 @@ const limiter = rateLimit({
 });
 
 const configExpress = (app: Application) => {
-  app.use(morgan("dev"));
+  app.options("*", cors());
   app.use(
     cors({
-      origin: ["http://localhost:3000", "https://adascout.com"],
+      origin: [
+        "http://localhost:3000",
+        "https://www.adascout.com",
+        "https://adascout.com",
+      ],
       credentials: true,
     }),
   );
+  app.use(morgan("dev"));
   app.use(
     helmet({
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
-          connectSrc: ["'self'", "https://adascout.com"],
+          connectSrc: [
+            "'self'",
+            "https://adascout.com",
+            "https://www.adascout.com",
+          ],
         },
       },
     }),
@@ -46,6 +55,7 @@ const configExpress = (app: Application) => {
     res.sendFile(path.resolve(__dirname, "../../distStatic", "index.html"));
   });
   app.use(errorHandler);
+
   return app;
 };
 
