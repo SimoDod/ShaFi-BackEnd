@@ -25,7 +25,7 @@ const configExpress = (app: Application) => {
   app.use(
     cors({
       origin: [
-        "http://localhost:3000",
+        "http://localhost:5173",
         "https://www.adascout.com",
         "https://adascout.com",
       ],
