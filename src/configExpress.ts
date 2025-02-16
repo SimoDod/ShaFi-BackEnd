@@ -44,6 +44,7 @@ const configExpress = (app: Application) => {
             "https://www.adascout.com",
             "https://www.google.com",
           ],
+          frameSrc: ["'self'", "https://www.google.com"],
         },
       },
     }),
