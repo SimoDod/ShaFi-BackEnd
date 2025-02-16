@@ -42,6 +42,7 @@ const configExpress = (app: Application) => {
             "'self'",
             "https://adascout.com",
             "https://www.adascout.com",
+            "https://www.google.com",
           ],
         },
       },
