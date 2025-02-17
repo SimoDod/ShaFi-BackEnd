@@ -49,11 +49,11 @@ export const createReservation = async (
 };
 
 export const getReservationsByYear = async (year: string) => {
-  const startOfYear = new Date(`${year}-01-01T00:00:00Z`);
-  const endOfYear = new Date(`${year}-12-31T23:59:59Z`);
+  const startOfYear = `${year}-0-01`;
+  const endOfYear = `${year}-11-30`;
 
   const reservations = await Reservation.find({
-    createdAt: {
+    "reservationDate.0": {
       $gte: startOfYear,
       $lte: endOfYear,
     },
