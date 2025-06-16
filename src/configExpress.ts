@@ -6,8 +6,6 @@ import cors from "cors";
 import helmet from "helmet";
 import routes from "./routes.js";
 import errorHandler from "./middlewares/errorHandler.js";
-import rateLimit from "express-rate-limit";
-import errMsg from "./utils/errorConstants.js";
 import { fileURLToPath } from "url";
 import e from "express";
 import path from "path";
@@ -23,6 +21,8 @@ const configExpress = (app: Application) => {
         "http://localhost:5173",
         "https://www.adascout.com",
         "https://adascout.com",
+        "https://www.sunnyalfa.com",
+        "https://sunnyalfa.com",
       ],
       credentials: true,
     }),
